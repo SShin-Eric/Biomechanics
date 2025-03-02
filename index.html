@@ -30,6 +30,17 @@
 
 </head>
 <body>
+<h3>Visitors: <span id="visitor-count">Loading...</span></h3>
+
+<script>
+  async function fetchVisitorCount() {
+    const response = await fetch(`https://www.googleapis.com/analytics/v3/data/ga?ids=ga:YOUR_VIEW_ID&metrics=ga:users&start-date=30daysAgo&end-date=today&access_token=YOUR_ACCESS_TOKEN`);
+    const data = await response.json();
+    document.getElementById('visitor-count').innerText = data.totalsForAllResults["ga:users"];
+  }
+
+  fetchVisitorCount();
+</script>
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
